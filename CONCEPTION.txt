@@ -1,0 +1,58 @@
+
+CONCEPTION
+
+page index relié à l'Api: 
+faire un template d'index et l'afficher dans la partie admin avec
+des boutons modifier
+
+un CONTENTPOST doit contenir:
+une image, un lien de redirection, un 
+
+HERO
+A LA UNE
+PROMO
+
+IndexModel:
+text 1: 
+text 2: 
+imgHero:
+
+image à la une: 
+imgUne1: vérifier format carré 
+imgUne2:
+imgUne3:
+
+PROTOCOLE DE COMMANDE
+
+authentification client => authorisation et permission
+ajout produit panier
+creer un modele de commande dans BD 
+trouver solution pour limiter historique commande
+afficher commande sur tableau de bord
+faire un bouton print -> formater le ticket
+invité le client à valider sa commande par SMS => préremplissage du SMS avec son adresse son nom et sa commande
+
+
+
+
+A FAIRE
+
+- vérifier les LABEL et faire attention à ce que chaque id soit unique (binder le for et le name)
+- formulaire: empecher la saisie de caractère non souhaité
+- rôle et authorisation
+- API vérif mail
+- désactiver le hover pour les touch device
+
+
+
+A FAIRE EN DERNIER
+- night shift
+- coder une aide aux choix façon tinder
+
+
+RGPD 
+
+- modele de registre simplifié à remplir  (site CNIL registre des activité de traitement)
+- informé le client que ces données vont être utilisé à des fins commerciales 
+- intégré une page de opt-out
+- 
