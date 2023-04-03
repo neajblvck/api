@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'Subtlecurves';
+    src: url('../src/assets/fonts/SubtleCurves.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Anton';
+    src: url('../src/assets/fonts/AntonRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  #app {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+  }
+  
+  body{
+    overflow-x: hidden;
+  }
+  
+  h1{
+    font-family: 'Subtlecurves';
+    color: white
+  }
+
+  h2{
+    font-family: 'Anton';
+    font-size: 1em;
+    color: white
+  }
+
+  #public{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    background-color: #1a8737;
+}
+
+.navMobile{
+  display: none;
+}
+
+@media screen and (max-width: 650px){
+
+.navbar{
+    display: none;
+}
+
+.navMobile{
+  display: block;
+}
+
+#public{
+  padding-top: 0;
+}
+
+
+}

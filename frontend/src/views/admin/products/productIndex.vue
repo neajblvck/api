@@ -1,9 +1,10 @@
 <template>
     <div class="admin">
         <div class="admin-content">
-            <h2>Liste des Produits</h2>
-            <div class="content-wrap">
+            <h1>Liste des Produits</h1>
+            <h2>Assurez-vous que votre menu est correct</h2>
 
+            <div class="content-wrap">
             </div> 
             <table>
                 <thead>

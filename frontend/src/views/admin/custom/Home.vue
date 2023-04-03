@@ -1,14 +1,68 @@
 <template>
     <div class="admin">
+        <h1 id="homeManager-head">HOME MANAGER</h1>
+        <svg>
+            <use href="@/assets/icons/icons.svg#return"></use>
+        </svg>
+
+        <svg>
+            <use href="@/assets/icons/icons.svg#upload"></use>
+        </svg>
+
+
+        {{ homeColor }}
+        <section id="colorTable">
+            <h1>TABLE DES COULEURS</h1>
+            <h2>Modifier le thème avec la table des couleurs</h2>
+            <div class="container-grid">
+                <div class="swatch">
+                    <input type="color" class="colorSelector" name="couleur" v-model="homeColor">
+                    <div class="info">
+                        <h1>FOND</h1>
+                        <h2 class="hexaCode">{{ homeColor }}</h2>
+                    </div>
+                </div>
+
+                <div class="swatch">
+                    <input type="color" class="colorSelector" name="couleur" v-model="titleColor">
+                    <div class="info">
+                        <h1>TITRAGES</h1>
+                        <h2 class="hexaCode">{{ titleColor }}</h2>
+                    </div>
+                </div>
+
+                <div class="swatch">
+                    <input type="color" class="colorSelector" name="couleur" v-model="navColor">
+                    <div class="info">
+                        <h1>NAVIGATION</h1>
+                        <h2 class="hexaCode">{{ navColor }}</h2>
+                    </div>
+                </div>
+
+                <div class="swatch">
+                    <input type="color" class="colorSelector" name="couleur" v-model="btnColor">
+                    <div class="info">
+                        <h1>BOUTONS</h1>
+                        <h2 class="hexaCode">{{ btnColor }}</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
         <section class="section-marketing">
+
+            <h1>LE FEED MARKETING</h1>
+
             <div class="container-grid">
+
                 <div class="banner" v-for="(post, index) in home" :key="post._id">
                     <form enctype='multipart/form-data' @submit.prevent="$event => editPost(index)">
                         <div class="banner-content">
-                            <label :for="'changeImg' + index" class="btn label-changeFile">
-                                CHOISIR UNE IMAGE
+                            <label :for="'changeImg' + index" class="label-changeFile">
+                                <svg class="icon upload-icon">
+                                    <use href="@/assets/icons/icons.svg#upload"></use>
+                                </svg>
                                 <input class="changeFile" :id="'changeImg' + index" type="file"
                                     @change="$event => selectFile1($event, index)"
                                     accept="image/png, image/jpg, image/jpeg" />
@@ -20,23 +74,25 @@
                         </div>
                         <div class="textWrap">
                             <div class="cardText">
-                                <div class="edit-card" @click="activeIndex = 'title'+index">
+                                <div class="edit-card" @click="activeIndex = 'title' + index">
 
-                                    <textarea :class="{cardFocus: activeIndex === 'title'+index}" class="card-title" type="text"
-                                        rows="1" maxlength="30" pattern="[A-Za-z0-9 ]+" v-model="post.titlePost">
-                                                </textarea>
+                                    <textarea :class="{ cardFocus: activeIndex === 'title' + index }" class="card-title"
+                                        type="text" rows="1" maxlength="20" pattern="[A-Za-z0-9 ]+"
+                                        v-model="post.titlePost">
+                                                                                        </textarea>
 
-                                    <div class="btn-textarea" v-if="activeIndex === 'title'+index">
+                                    <div class="btn-textarea" v-if="activeIndex === 'title' + index">
                                         <!-- <button class="btn" @click.stop.prevent="validModif('cardTitle', index)">ok</button> -->
                                         <button class="btn"
                                             @click.stop.prevent="cancelModif('cardTitle', index)">annuler</button>
                                     </div>
                                 </div>
-                                <div class="edit-card" @click="activeIndex = 'description'+index">
-                                    <textarea :class="{cardFocus: activeIndex === 'description'+index}" class="card-description"
-                                        type="text" rows="2" cols="30" maxlength="200" v-model="post.descriptionPost">
-                                                </textarea>
-                                    <div v-if="activeIndex === 'description'+index" class="btn-textarea">
+                                <div class="edit-card" @click="activeIndex = 'description' + index">
+                                    <textarea :class="{ cardFocus: activeIndex === 'description' + index }"
+                                        class="card-description" type="text" rows="2" maxlength="90"
+                                        v-model="post.descriptionPost">
+                                                                                        </textarea>
+                                    <div v-if="activeIndex === 'description' + index" class="btn-textarea">
                                         <!-- <button class="btn"
                                             @click.stop.prevent="validModif('description', index)">ok</button> -->
                                         <button class="btn"
@@ -72,14 +128,20 @@
 
 <script>
 import { customService } from '@/services/custom.service';
-
 export default {
     name: 'homeEdit',
+    components: {
+    },
     data() {
         return {
             home: [],
             originalData: [],
-            activeIndex: null,
+            activeIndex: '#1C1C1C',
+            homeColor: '#1C1C1C',
+            titleColor: '#1C1C1C',
+            navColor: '#1C1C1C',
+            btnColor: '#1C1C1C',
+
         }
     },
 
@@ -157,8 +219,8 @@ export default {
             customService.postContent(this.home[index]._id, formData)
                 .then(res => {
                     console.log(res)
-                        this.home[index].newFile = null
-                    
+                    this.home[index].newFile = null
+
                 })
                 .catch(err => console.log(err))
 
@@ -186,6 +248,88 @@ export default {
 </script>
 
 <style scoped>
+.admin {
+    padding: 0px 3% 0px 3%;
+}
+
+#homeManager-head {
+    text-align: center;
+    border-bottom: solid 2px white;
+}
+
+.colorSelector {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 15em;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.swatch {
+    grid-column-end: span 1;
+    display: flex;
+    box-sizing: border-box;
+    background: #1c1c1c;
+    color: white;
+    overflow: hidden;
+    height: 7em;
+    border: solid 3px #1c1c1c;
+    flex-direction: column-reverse;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.swatch .info {
+    position: relative;
+    padding: 0.7em;
+    text-align: center;
+}
+
+.swatch h1 {
+    font-size: 1em;
+    font-family: Subtlecurves;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.swatch h2 {
+    font-family: 'Anton';
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+}
+
+.hexaCode {
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    bottom: -2.6em;
+    pointer-events: none;
+}
+
+::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+::-webkit-color-swatch {
+    border: 0;
+    border-radius: 0;
+}
+
+::-moz-color-swatch,
+::-moz-focus-inner {
+    border: 0;
+}
+
+::-moz-focus-inner {
+    padding: 0;
+}
+
 .btnMobile {
     z-index: 9999;
     position: fixed;
@@ -217,6 +361,10 @@ export default {
 }
 
 .btn {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     font-size: 15px;
     font-family: 'Subtlecurves', cursive;
     padding: 0.3rem 0.9rem;
@@ -231,16 +379,9 @@ export default {
 
 }
 
-.oldImg {
-    transition: 0.3s ease;
-}
-
-.newImg {
-    filter: contrast(0.6);
-}
-
 .label-changeFile:hover+.picture .oldImg {
-    filter: contrast(0.5);
+    transition: 0.5s ease;
+    filter: brightness(0.7);
 }
 
 .changeFile {
@@ -252,8 +393,8 @@ export default {
     cursor: pointer;
     z-index: 1;
     position: absolute;
-    bottom: 3%;
-    right: 3%;
+    top: 3%;
+    right: 2%;
 }
 
 .btn:hover {
@@ -294,7 +435,6 @@ export default {
 }
 
 .container-grid {
-    width: 93%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 13px;
@@ -304,6 +444,7 @@ export default {
     margin-right: auto;
     margin-left: auto;
 }
+
 .banner {
     position: relative;
     grid-column-end: span 2;
@@ -319,6 +460,7 @@ export default {
     border-radius: 12px 12px 0 0;
     position: relative;
     padding-top: 53.33%;
+    border: 5px solid white;
 }
 
 .banner-content img {
@@ -328,6 +470,16 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
+}
+
+.upload-icon {
+    background-color: white;
+    border-radius: 12px;
+    width: 40px;
+    height: 33px;
+    padding: 5px;
+    box-shadow: 0px 0px 5px 3px #00000030;
 }
 
 .textWrap {
@@ -410,8 +562,10 @@ export default {
         row-gap: 16px;
         column-gap: 16px;
 
+    }
 
-
+    .swatch {
+        grid-column-end: span 2;
     }
 
 }

@@ -107,3 +107,19 @@ export default {
 
 
 </style>
+
+function toggleNav() {
+    let sideNav = document.getElementById("mySidenav");
+    let openNav = document.getElementById("openNav");
+    let footer = document.getElementById("footer");
+    sideNav.classList.toggle("open");
+    openNav.classList.toggle("hide");
+    bodyContent.classList.toggle("pushBody");
+    sideNav.classList.toggle("stopscroll");
+    document.body.classList.toggle("stopscroll");
+  }
+ 
+  function closeNav() {
+   sideNav.classList.toggle("open");
+   openNav.classList.toggle("hide");
+ }

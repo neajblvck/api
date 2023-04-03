@@ -1,9 +1,8 @@
 <template>
   <div class="home">
     <!-- faire un caroussel -->
-
-    <div class="mainImage" :style="{ backgroundImage: home.imgPromo1Url }">
-      <img class="bigImg" :src="home.imgPromo1Url" alt="">
+    <div class="mainImage">
+      <img class="bigImg" :src="hero" alt="">
     </div>
 
     <div class="navDown">
@@ -11,7 +10,6 @@
     </div>
 
 
-  
     <section class="section-marketing">
       <div class="container-grid">
 
@@ -23,8 +21,8 @@
           </div>
           <div class="textWrap">
             <div class="cardText">
-              <div class="card-title">{{post.titlePost}}</div>
-              <div class="card-description">{{post.descriptionPost}}</div>
+              <div class="card-title">{{ post.titlePost }}</div>
+              <div class="card-description">{{ post.descriptionPost }}</div>
             </div>
             <button class="btn">DECOUVRIR</button>
           </div>
@@ -48,6 +46,7 @@ export default {
     return {
       home: {},
       contents: [],
+      hero: "http://localhost:3000/images/hero.jpg",
     }
   },
 
@@ -65,28 +64,28 @@ export default {
 </script>
 
 <style scoped>
-
-.btnMobile{
+.btnMobile {
   z-index: 9999;
-    position: fixed;
-    bottom: 20px;
-    right: 1.375rem;
-    font-size: 21px;
-    box-shadow: rgb(0 0 0 / 15%) 0px 4px 5px 2px;
-    font-family: 'Subtlecurves';
-    max-width: 100%;
-    overflow: hidden;
-    color: rgb(255, 255, 255);
-    background-color: rgb(237 49 36);
-    outline: 0px;
-    border: 0px;
-    border-radius: 19px;
-    width: auto;
-    cursor: pointer;
-    margin: 0;
-    padding: 0.45rem 1rem;
-    transition: all 0.125s ease 0s;
+  position: fixed;
+  bottom: 20px;
+  right: 1.375rem;
+  font-size: 21px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 4px 5px 2px;
+  font-family: 'Subtlecurves';
+  max-width: 100%;
+  overflow: hidden;
+  color: rgb(255, 255, 255);
+  background-color: rgb(237 49 36);
+  outline: 0px;
+  border: 0px;
+  border-radius: 19px;
+  width: auto;
+  cursor: pointer;
+  margin: 0;
+  padding: 0.45rem 1rem;
+  transition: all 0.125s ease 0s;
 }
+
 .btn {
   font-size: 15px;
   font-family: 'Subtlecurves', cursive;
@@ -109,7 +108,6 @@ export default {
 
 
 .home {
-  margin-top: -120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,7 +116,7 @@ export default {
 .mainImage {
   position: relative;
   width: 100%;
-  height: 400px;
+  padding-bottom: 70%;
   overflow: hidden;
 }
 
@@ -139,7 +137,7 @@ export default {
 }
 
 .container-grid {
-  width: 96%;
+  width: 93%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 13px;
@@ -226,7 +224,7 @@ export default {
   }
 }
 
-  @media (min-width: 1000px) {
+@media (min-width: 1000px) {
 
   .banner {
     grid-column-end: span 4;
